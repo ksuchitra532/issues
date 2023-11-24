@@ -13,7 +13,4 @@ inputs:
     required: true
 runs:
   using: 'docker'
-  image:
-    name: 'ubuntu-latest'
-main:
-  - './update-issues.sh'
+  main: ./update-issues.sh
