@@ -1,0 +1,19 @@
+name: 'Update Issues on Release'
+description: 'Run a custom script to update issues when a release is made'
+author: 'ksuchitra532'
+inputs:
+  githubToken:
+    description: 'GitHub token for authentication'
+    required: true
+  ref:
+    description: 'branch'
+    required: true
+  repo:
+    description: 'repo'
+    required: true
+runs:
+  using: 'docker'
+  image:
+    name: 'ubuntu-latest'
+main:
+  - './update-issues.sh'
