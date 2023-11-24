@@ -12,8 +12,10 @@ RUN apt update
 RUN apt install -y git
 RUN apt install -y jq
 
-ADD update-issues.sh /action/update-issues.sh
+WORKDIR /GameMaker
 
-RUN chmod +x /action/update-issues.sh
+ADD update-issues.sh /GameMaker/update-issues.sh
 
-ENTRYPOINT ["/action/update-issues.sh"]
+RUN chmod +x /GameMaker/update-issues.sh
+
+ENTRYPOINT ["/GameMaker/update-issues.sh"]
