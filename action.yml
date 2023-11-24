@@ -13,4 +13,6 @@ inputs:
     required: true
 runs:
   using: 'docker'
+    image:
+    name: 'ubuntu-22.04'
   main: ./update-issues.sh
