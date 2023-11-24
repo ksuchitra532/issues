@@ -7,7 +7,7 @@ GITHUB_REF=$INPUT_REF
 GITHUB_REPOSITORY=$INPUT_REPO
 
 
-git clone --branch $GITHUB_REF https://${GITHUB_ACTOR}:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git
+git clone --branch "$GITHUB_REF" "https://ksuchitra532:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
 
 # Checkout the branch from GITHUB_REF
 BRANCH_NAME=$(echo $GITHUB_REF | sed 's/refs\/heads\///')
