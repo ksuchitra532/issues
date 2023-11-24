@@ -12,6 +12,8 @@ RUN apt update
 RUN apt install -y git
 RUN apt install -y jq
 
+WORKDIR /action
+
 ADD update-issues.sh /action/update-issues.sh
 
 RUN chmod +x /action/update-issues.sh
