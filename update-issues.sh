@@ -2,12 +2,12 @@
 
 set -ex
 
-GITHUB_TOKEN=$githubToken
-GITHUB_REF=$ref
-GITHUB_REPOSITORY=$repo
+GITHUB_TOKEN=$INPUT_GITHUBTOKEN
+GITHUB_REF=$INPUT_REF
+GITHUB_REPOSITORY=$INPUT_REPO
 
 
-git clone -b $ref https://${GITHUB_ACTOR}:${githubToken}@github.com/${repo}.git
+git clone -b $ref https://${GITHUB_ACTOR}:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git
 
 # Checkout the branch from GITHUB_REF
 BRANCH_NAME=$(echo $GITHUB_REF | sed 's/refs\/heads\///')
@@ -19,14 +19,14 @@ COMMIT_MESSAGE=$(git log --format=%B -n 1 $GITHUB_SHA)
 echo $COMMIT_MESSAGE
 
 # Find closed issues related to the branch
-ISSUES=$(curl -s -X GET -H "Authorization: token $GITHUB_TOKEN" "https://api.github.com/repos/$GITHUB_REPOSITORY/issues?state=closed" | jq -r ".[] | select(.title | test(\"$BRANCH_NAME\")) | .number")
+ISSUES=$(curl -s -X GET -H "Authorization: token $GITHUB_TOKEN" "https://api.github.com/repos/${GITHUB_REPOSITORY}/issues?state=closed" | jq -r ".[] | select(.title | test(\"$BRANCH_NAME\")) | .number")
 
 echo $ISSUES
 
 # Loop through the closed issues
 for issue in $ISSUES; do
   # Find the release associated with the closed issue
-  RELEASE_NAME=$(curl -s -X GET -H "Authorization: token $GITHUB_TOKEN" "https://api.github.com/repos/$GITHUB_REPOSITORY/issues/$issue" | jq -r '.milestone.title')
+  RELEASE_NAME=$(curl -s -X GET -H "Authorization: token $GITHUB_TOKEN" "https://api.github.com/repos/${GITHUB_REPOSITORY}/issues/$issue" | jq -r '.milestone.title')
 
   if [ "$RELEASE_NAME" != "null" ]; then
     # If a release is associated, update the issue
