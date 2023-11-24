@@ -7,7 +7,7 @@ GITHUB_REF=$ref
 GITHUB_REPOSITORY=$repo
 
 
-git clone -b $ref https://${GITHUB_ACTOR}:${githubToken}@$github.com/YoYoGames/GameMaker.git
+git clone -b $ref https://${GITHUB_ACTOR}:${githubToken}@github.com/${repo}.git
 
 # Checkout the branch from GITHUB_REF
 BRANCH_NAME=$(echo $GITHUB_REF | sed 's/refs\/heads\///')
