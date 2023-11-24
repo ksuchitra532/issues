@@ -12,7 +12,5 @@ inputs:
     description: 'repo'
     required: true
 runs:
-  using: 'docker'
-    image:
-      name: 'ubuntu-latest'
-  main: ./update-issues.sh
+    using: 'docker'
+    image: "Dockerfile"
