@@ -10,6 +10,6 @@ LABEL "maintainer"="Adam Zolyak <adam@tinkurlab.com>"
 
 ADD update-issues.sh /action/upate-issues.sh
 
-RUN chmod +x /action/entrypoint.sh
+RUN chmod +x /action/upate-issues.sh
 
-ENTRYPOINT ["/action/entrypoint.sh"]
+ENTRYPOINT ["/action/upate-issues.sh"]
